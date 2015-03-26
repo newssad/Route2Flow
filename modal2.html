@@ -1,0 +1,310 @@
+﻿<div class="modal-full" id="modalwindows">
+    <div class="modal-content">
+        <div class="modal-header">
+
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Title (Modal2.html)</h4>
+        </div>
+        <div class="modal-body no-padder">
+            <div class="wizard clearfix">
+                <ul class="steps">
+                    <li data-target="#step3" class="active"><span class="badge badge-info">1</span>Document Detail</li>
+                    <li data-target="#step4"><span class="badge">2</span>Upload Document</li>
+                </ul>
+                <div class="actions">
+                    <button type="button" class="btn btn-default btn-xs btn-prev" disabled="disabled">Prev</button>
+                    <button type="button" class="btn btn-default btn-xs btn-next" data-last="Finish">Next</button>
+                </div>
+            </div>
+            <div class="step-content">
+                <div class="step-pane active" id="step3">
+                    <table style="width:100%;">
+                        <tr>
+                            <td>Subject</td>
+                            <td><input class="form-control m-b" id="msubject" type="text"></td>
+                        </tr>
+                        <tr>
+                            <td>Description</td>
+                            <td>
+                                <input class="form-control m-b" id="mdsc" type="text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Duration</td>
+                            <td>
+                                <input id="msdate" size="16" type="text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Refwork</td>
+                            <td>
+                                <input class="form-control m-b" id="mrefwork" type="text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Location</td>
+                            <td>
+                                <input class="form-control m-b" id="mlocation" type="text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>ExpireDate</td>
+                            <td>
+                                <input  id="mExpireDate" type="text">
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+                <div class="step-pane" id="step4">
+                <div class="row wrapper">  
+                    <div class="col-sm-8 m-b-xs" id="FileUploadContainer">
+                    Description : <input type="text" id="txt0" name="txt0" style="width:250px;" /><input type="file" id="file0" name="file0" accept="image/*;capture=camera" onchange="hideFileUpload(this);" />
+                    </div>
+                  <div class="col-sm-4 m-b-xs">
+					&nbsp;
+                  </div> 
+                  <div class="col-sm-3">
+                      <div class="input-group" >
+                          <input type="text" class="input-sm form-control" placeholder="Search">
+                          <span class="input-group-btn">
+                              <button class="btn btn-sm btn-default" type="button">Go!</button>
+                          </span>
+                      </div>
+                  </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped b-t b-light" id="tablefile">
+                        <thead>
+                            <tr>
+                                <th width="20"><input type="checkbox"></th>
+                                <th class="th-sortable" data-toggle="class">
+                                    Project
+                                    <span class="th-sort">
+                                        <i class="fa fa-sort-down text"></i>
+                                        <i class="fa fa-sort-up text-active"></i>
+                                        <i class="fa fa-sort"></i>
+                                    </span>
+                                </th>
+                                <th>Task</th>
+                                <th>Date</th>
+                                <th width="80"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="checkbox" name="post[]" value="2"></td>
+                                <td>Idrawfast</td>
+                                <td>4c</td>
+                                <td>Jul 25, 2013</td>
+                                <td>
+                                    <a class="btn btn-sm btn-icon btn-success" href="#"><i class="fa fa-edit"></i></a>
+                                    <a class="btn btn-sm btn-icon btn-danger" href="#"><i class="fa fa-minus-square"></i></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+            <a href="#" class="btn btn-danger" style="display:none;">Check Out</a><a href="#" class="btn btn-primary" id="create" data-dismiss="modal">Create and Continue</a>
+        </div>
+    </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+<script src="js/jquery-1.10.2.js"></script>
+<script src="js/jquery-migrate-1.0.0.js"></script>
+<script src="js/datepicker/jquery-ui-1.8.10.offset.datepicker.min.js"></script>
+<link href="js/datepicker/demos.css" rel="stylesheet" />
+<link href="js/datepicker/jquery.ui.all.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+    $(function () {
+        var d = new Date();
+        var toDay = d.getDate() + '/'
+    + (d.getMonth() + 1) + '/'
+    + (d.getFullYear() + 543);
+        $("#msdate").datepicker({
+            dateFormat: 'dd/mm/yy',
+            isBuddhist: true,
+            defaultDate: toDay,
+            dayNames: ['อาทิตย์', 'จันทร์', 'อังคาร',
+                        'พุธ', 'พฤหัสบดี', 'ศุกร์', 'เสาร์'],
+            dayNamesMin: ['อา.', 'จ.', 'อ.', 'พ.', 'พฤ.', 'ศ.', 'ส.'],
+            monthNames: ['มกราคม', 'กุมภาพันธ์', 'มีนาคม',
+                        'เมษายน', 'พฤษภาคม', 'มิถุนายน',
+                        'กรกฎาคม', 'สิงหาคม', 'กันยายน',
+                        'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'],
+            monthNamesShort: ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.',
+                         'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.',
+                         'พ.ย.', 'ธ.ค.'],
+            onSelect: function (dateText, inst) {
+                dateBefore = $(this).val();
+                var arrayDate = dateText.split("/");
+                arrayDate[2] = parseInt(arrayDate[2]);
+                $(this).val(arrayDate[0] + "/" + arrayDate[1] + "/" + arrayDate[2]);
+            }
+        });
+        $("#mExpireDate").datepicker({
+            dateFormat: 'dd/mm/yy',
+            isBuddhist: true,
+            defaultDate: toDay,
+            dayNames: ['อาทิตย์', 'จันทร์', 'อังคาร',
+                        'พุธ', 'พฤหัสบดี', 'ศุกร์', 'เสาร์'],
+            dayNamesMin: ['อา.', 'จ.', 'อ.', 'พ.', 'พฤ.', 'ศ.', 'ส.'],
+            monthNames: ['มกราคม', 'กุมภาพันธ์', 'มีนาคม',
+                        'เมษายน', 'พฤษภาคม', 'มิถุนายน',
+                        'กรกฎาคม', 'สิงหาคม', 'กันยายน',
+                        'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'],
+            monthNamesShort: ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.',
+                         'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.',
+                         'พ.ย.', 'ธ.ค.'],
+            onSelect: function (dateText, inst) {
+                dateBefore = $(this).val();
+                var arrayDate = dateText.split("/");
+                arrayDate[2] = parseInt(arrayDate[2]);
+                $(this).val(arrayDate[0] + "/" + arrayDate[1] + "/" + arrayDate[2]);
+            }
+        });
+        $("#create").click(function () {
+          //  alert($("#msubject").val());
+            if ($("#msubject").val() != "") {
+                $.ajax({
+                    type: "POST",
+                    url: "process.aspx/creatework",
+                    data: '{ subject: "' + $("#msubject").val() + '",dsc:"' + $("#mdsc").val() + '",sdate:"' + $("#msdate").val() + '",refwork:"' + $("#mrefwork").val() + '",expiredate:"' + $("#mExpireDate").val() + '",location:"' + $("#mlocation").val() + '"}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (msg) {
+                        alert(msg.d);
+                        //$('#modalwindows').modal('hide');
+                    },
+                    failure: function (msg) {
+                        alert(msg);
+                    },
+                    error: function (xhr, err) {
+                        alert(err);
+                    }
+                });
+            }
+            else {
+                alert("กรุณากรอกข้อมูลให้ครบ");
+                //$("#war").css("display", "block")
+            }
+        });
+        
+     
+    });
+</script>
+<script type="text/javascript">
+    var counter = 1;
+    function AddFileUpload(val) {
+        var div = document.createElement('DIV');
+
+        div.innerHTML = '<input type="text" id="txt' + counter + '" name="txt' + counter + '" style="width:250px" /> &nbsp;&nbsp;&nbsp;&nbsp; <input id="file' + counter + '" name = "file' + counter +
+                        '" type="file" accept="image/*;capture=camera" onchange=hideFileUpload(this);  class="filestyle" data-icon="false" data-classbutton="btn btn-success" data-classinput="form-control inline input-s" />' +
+                        '<input style=display:none id="Button' + counter + '" type="button" ' +
+                        'value="Remove" onclick = "RemoveFileUpload(this)" />';
+        document.getElementById("FileUploadContainer").appendChild(div);
+
+    }
+    function RemoveFileUpload(div) {
+        document.getElementById("FileUploadContainer").removeChild(div.parentNode);
+    }
+    function Removespan(id) {
+        var name = id;
+        var num = parseInt(id) - 1;
+        var name2 = "#file" + num;
+
+        $(name2).remove();
+        $("." + name + "").remove();
+    }
+
+    function hideFileUpload(id) {
+        var name = "#" + id.id
+        var num = parseInt(counter) - 1;
+        var txtbox = "#txt" + num;
+        $(name).css("display", "none");
+        $(txtbox).css("display", "none");
+        $(".bootstrap-filestyle").css("display", "none");
+        AddFileUpload();
+        txttable($(name).val(), txtbox);
+
+    }
+    function txttable(filename, txtbox) {
+        var div = document.createElement('span');
+        var name = filename.replace(/^.*[\\\/]/, '');
+        var extension = name.split(".")[1];
+
+       // div.innerHTML = "<span id='" + counter + "' class='" + counter + "'>" + name + "</span><a href='#' onclick='Removespan(" + counter + ")' class='" + counter + "'><img src='img/delete.png' width='10' height='10' alt=''></a>,";
+        var tbody = document.createElement('tbody');
+        var tr = document.createElement('tr');
+
+        tr.appendChild(document.createElement('td'));
+        tr.appendChild(document.createElement('td'));
+        tr.appendChild(document.createElement('td'));
+        tr.appendChild(document.createElement('td'));
+        tr.appendChild(document.createElement('td'));
+
+        var listitems = document.createElement('input');
+        listitems.setAttribute("type", "checkbox");
+        $(listitems).attr("name", "post[]")
+        .attr("value", "2");
+
+        tr.cells[0].appendChild(listitems)
+        tr.cells[1].appendChild(document.createTextNode($(txtbox).val()));
+        tr.cells[2].appendChild(document.createTextNode("4c"));
+        tr.cells[3].appendChild(document.createTextNode("Jul 25, 2013"));
+
+        var a = document.createElement('a');
+        $(a).addClass("btn btn-sm btn-icon btn-success")
+        .attr("href", "#");
+
+        var i2 = document.createElement('i');
+        $(i2).addClass("fa fa-edit")
+       .appendTo($(a)); //second div
+
+        var a2 = document.createElement('a');
+        $(a2).addClass("btn btn-sm btn-icon btn-danger")
+        .attr("href", "#");
+
+        var i3 = document.createElement('i');
+        $(i3).addClass("fa fa-minus-square")
+       .appendTo($(a2)); //second div
+       
+        tr.cells[4].appendChild(a);
+        tr.cells[4].appendChild(a2);
+
+        tbody.appendChild(tr);
+        document.getElementById("tablefile").appendChild(tbody);
+        counter++;
+    }
+    function _edits(id) {
+        location.href = "attach.aspx?id=" + id;
+    }
+    function _delete(id) {
+        if (confirm("Confirm Delete Ok") == 1) {
+            $.ajax({
+                type: "POST",
+                url: "default.aspx/delete",
+                data: '{ id: "' + id + '"}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (msg) {
+
+                    // alert("success");
+                    location.href = location.href;
+                },
+                failure: function (msg) {
+                    alert(msg);
+                },
+                error: function (xhr, err) {
+                    alert(err);
+                }
+            });
+        }
+    }
+
+</script>
+<script src="js/file-input/bootstrap-filestyle.min.js"></script>

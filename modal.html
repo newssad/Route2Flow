@@ -1,0 +1,106 @@
+﻿<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-874">
+   
+
+</head>
+<body>
+    <div class="modal-dialog" id="modalwindows">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Title ()</h4>
+            </div>
+            <div class="modal-body">
+                <table style="width:100%;">
+                    <tr>
+                        <td>Subject</td>
+                        <td><input class="form-control m-b" id="subject" type="text"></td>
+                    </tr>
+                    <tr>
+                        <td>Description</td>
+                        <td>
+                            <input class="form-control m-b" id="dsc" type="text">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Duration</td>
+                        <td>
+                            <input  id="sdate" size="16" type="text" >
+                        </td>
+                    </tr>
+                </table>
+            </div>
+           
+            <div class="modal-footer">
+                <a href="#" class="btn btn-default" id="close" data-dismiss="modal">Close</a>
+                <a href="#" class="btn btn-danger" style="display:none;">Check Out</a><a href="#" id="create" class="btn btn-primary" >Create</a>
+
+               
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+    <script src="js/jquery-1.10.2.js"></script>
+    <script src="js/jquery-migrate-1.0.0.js"></script>    
+    <script src="js/datepicker/jquery-ui-1.8.10.offset.datepicker.min.js"></script>
+    <link href="js/datepicker/demos.css" rel="stylesheet" />
+    <link href="js/datepicker/jquery.ui.all.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        $(function () {          
+            var d = new Date();
+            var toDay = d.getDate() + '/'
+        + (d.getMonth() + 1) + '/'
+        + (d.getFullYear() + 543);
+            $("#sdate").datepicker({
+                dateFormat: 'dd/mm/yy',
+                isBuddhist: true,
+                defaultDate: toDay,
+                dayNames: ['อาทิตย์', 'จันทร์', 'อังคาร',
+                            'พุธ', 'พฤหัสบดี', 'ศุกร์', 'เสาร์'],
+                dayNamesMin: ['อา.', 'จ.', 'อ.', 'พ.', 'พฤ.', 'ศ.', 'ส.'],
+                monthNames: ['มกราคม', 'กุมภาพันธ์', 'มีนาคม',
+                            'เมษายน', 'พฤษภาคม', 'มิถุนายน',
+                            'กรกฎาคม', 'สิงหาคม', 'กันยายน',
+                            'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'],
+                monthNamesShort: ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.',
+                             'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.',
+                             'พ.ย.', 'ธ.ค.'],
+                onSelect: function (dateText, inst) {
+                    dateBefore = $(this).val();
+                    var arrayDate = dateText.split("/");
+                    arrayDate[2] = parseInt(arrayDate[2]);
+                    $(this).val(arrayDate[0] + "/" + arrayDate[1] + "/" + arrayDate[2]);
+                }
+            });
+            $("#create").click(function () {
+                if ($("#subject").val() != "") {
+                    $.ajax({
+                        type: "POST",
+                        url: "process.aspx/creatework",
+                        data: '{ subject: "' + $("#subject").val() + '",dsc:"' + $("#dsc").val() + '",prior:"' + $("#priority").val() + '"}',
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (msg) {
+                            alert(msg.d);
+                            $('#modalwindows').modal('hide');
+                        },
+                        failure: function (msg) {
+                            alert(msg);
+                        },
+                        error: function (xhr, err) {
+                            alert(err);
+                        }
+                    });
+                }
+                else {
+                    alert("กรุณากรอกข้อมูลให้ครบ");
+                    //$("#war").css("display", "block")
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
